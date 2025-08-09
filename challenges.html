@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - OXYGENE GYM</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <h1>Prochain Challenge</h1>
+    <div id="countdown">
+        <span id="days">10</span> jours 
+        <span id="hours">12</span> heures 
+        <span id="minutes">45</span> minutes 
+        <span id="seconds">57</span> secondes
+    </div>
+    <p>Il ne reste plus beaucoup de temps avant le prochain défi !</p>
+
+    <form action="GOOGLE_SHEET_URL" method="post">
+        <label>Nom et prénom:</label>
+        <input type="text" name="nom">
+        <label>Numéro de téléphone:</label>
+        <input type="tel" name="tel">
+        <label>ID de puce sportive:</label>
+        <input type="text" name="id">
+        <input type="text" value="Frais d’inscription : 1500Dzd" readonly>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <script>
+        function countdown() {
+            const targetDate = new Date().getTime() + (10*24*60*60*1000);
+            setInterval(() => {
+                let now = new Date().getTime();
+                let distance = targetDate - now;
+
+                document.getElementById("days").innerText = Math.floor(distance / (1000*60*60*24));
+                document.getElementById("hours").innerText = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+                document.getElementById("minutes").innerText = Math.floor((distance % (1000*60*60)) / (1000*60));
+                document.getElementById("seconds").innerText = Math.floor((distance % (1000*60)) / 1000);
+            }, 1000);
+        }
+        countdown();
+    </script>
+</body>
+</html>
